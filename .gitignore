@@ -1,4 +1,2 @@
-bazel-bin/
-bazel-out/
-bazel-pdcurses/
-MODULE.bazel.lock
+bazel-*
+*.bazel.lock

@@ -20,25 +20,29 @@ copy_file(
 )
 
 cc_library(
-    name = "hdrs",
-    hdrs = [
+    name = "pdcurses",
+    srcs = glob([
+        "pdcurses/*.c",
+        "pdcurses/*.h",
+        "common/*.c",
+    ]) + select({
+        "@platforms//os:windows": glob([
+            "wincon/*.c",
+            "wincon/*.h",
+        ]),
+        "@platforms//os:linux": glob([
+        ]),
+    }),
+    hdrs = glob([
+        "*.h",
+        "common/*.h",
+        "common/*.xpm",
+    ]) + [
         "pdcurses_bazel_hdrs/curses.h",
         "pdcurses_bazel_hdrs/curspriv.h",
         "pdcurses_bazel_hdrs/panel.h",
     ],
     defines = ["NCURSES_CONST"],
     includes = ["pdcurses_bazel_hdrs"],
-    visibility = ["//:__subpackages__"],
-)
-
-cc_library(
-    name = "pdcurses",
     visibility = ["//visibility:public"],
-    deps = [
-        ":hdrs",
-        "//pdcurses",
-    ] + select({
-        "@platforms//os:windows": ["//wincon"],
-        "@platforms//os:linux": ["//x11"],
-    }),
 )
