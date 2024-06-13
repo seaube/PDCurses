@@ -1,5 +1,5 @@
 module(
-    name = "pd_curses",
+    name = "pdcurses",
     version = "3.9.0",
 )
 
