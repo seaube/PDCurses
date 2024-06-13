@@ -31,6 +31,8 @@ cc_library(
             "wincon/*.h",
         ]),
         "@platforms//os:linux": glob([
+            "x11/*.c",
+            "x11/*.h",
         ]),
     }),
     hdrs = glob([
@@ -42,7 +44,24 @@ cc_library(
         "pdcurses_bazel_hdrs/curspriv.h",
         "pdcurses_bazel_hdrs/panel.h",
     ],
+    copts = select({
+        "@platforms//os:linux": ["-isystem /usr/include/X11"],
+        "//conditions:default": [],
+    }),
     defines = ["NCURSES_CONST"],
     includes = ["pdcurses_bazel_hdrs"],
+    linkopts = select({
+        "@platforms//os:windows": [
+            "-DEFAULTLIB:user32",
+            "-DEFAULTLIB:advapi32",
+        ],
+        "@platforms//os:linux": [
+            "-lX11",
+            "-lXt",
+            "-lXpm",
+            "-lXmu",
+            "-lXaw",
+        ],
+    }),
     visibility = ["//visibility:public"],
 )
