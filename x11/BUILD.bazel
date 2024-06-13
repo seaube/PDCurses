@@ -1,0 +1,23 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "x11",
+    srcs = glob([
+        "*.c",
+        "*.h",
+    ]),
+    hdrs = glob(["*.h"]),
+    # copts = ["-isystem /usr/include/X11"],
+    linkopts = [
+        "-lX11",
+        "-lXt",
+        "-lXpm",
+        "-lXmu",
+        "-lXaw",
+    ],
+    visibility = ["//:__pkg__"],
+    deps = [
+        "//:hdrs",
+        "//common",
+    ],
+)

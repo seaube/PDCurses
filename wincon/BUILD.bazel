@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "wincon",
+    srcs = glob([
+        "*.c",
+        "*.h",
+    ]),
+    hdrs = glob(["*.h"]),
+    linkopts = [
+        "-DEFAULTLIB:user32.lib",
+        "-DEFAULTLIB:advapi32.lib",
+    ],
+    visibility = ["//:__pkg__"],
+    deps = [
+        "//:hdrs",
+        "//common",
+    ],
+)

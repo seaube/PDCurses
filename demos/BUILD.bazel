@@ -1,0 +1,61 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "firework",
+    srcs = ["firework.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "ozdemo",
+    srcs = ["ozdemo.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "ptest",
+    srcs = ["ptest.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "rain",
+    srcs = ["rain.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "testcurs",
+    srcs = ["testcurs.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "tuidemo",
+    srcs = [
+        "tui.c",
+        "tui.h",
+        "tuidemo.c",
+    ],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "worm",
+    srcs = ["worm.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)
+
+cc_binary(
+    name = "xmas",
+    srcs = ["xmas.c"],
+    tags = ["demo"],
+    deps = ["//:PDCurses"],
+)

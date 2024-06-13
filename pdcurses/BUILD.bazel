@@ -1,0 +1,14 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "pdcurses",
+    srcs = glob([
+        "*.c",
+        "*.h",
+    ]),
+    hdrs = glob(["*.h"]),
+    visibility = ["//:__pkg__"],
+    deps = [
+        "//:hdrs",
+    ],
+)
