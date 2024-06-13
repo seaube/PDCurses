@@ -1,13 +1,38 @@
+load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 load("@rules_cc//cc:defs.bzl", "cc_library")
+
+copy_file(
+    name = "curses_h",
+    src = "curses.h",
+    out = "pdcurses_bazel_hdrs/curses.h",
+)
+
+copy_file(
+    name = "curspriv_h",
+    src = "curspriv.h",
+    out = "pdcurses_bazel_hdrs/curspriv.h",
+)
+
+copy_file(
+    name = "panel_h",
+    src = "panel.h",
+    out = "pdcurses_bazel_hdrs/panel.h",
+)
 
 cc_library(
     name = "hdrs",
-    hdrs = glob(["*.h"]),
+    hdrs = [
+        "pdcurses_bazel_hdrs/curses.h",
+        "pdcurses_bazel_hdrs/curspriv.h",
+        "pdcurses_bazel_hdrs/panel.h",
+    ],
+    defines = ["NCURSES_CONST"],
+    includes = ["pdcurses_bazel_hdrs"],
     visibility = ["//:__subpackages__"],
 )
 
 cc_library(
-    name = "PDCurses",
+    name = "pdcurses",
     visibility = ["//visibility:public"],
     deps = [
         ":hdrs",

@@ -7,7 +7,7 @@ cc_library(
         "*.h",
     ]),
     hdrs = glob(["*.h"]),
-    # copts = ["-isystem /usr/include/X11"],
+    copts = ["-isystem /usr/include/X11"],
     linkopts = [
         "-lX11",
         "-lXt",
